@@ -3,11 +3,17 @@ import tornado.ioloop
 
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hey there! This is a python command executed from the backend :)")
+        self.write("Hey there! Welcome to my course selection for MSCS at Georgia Tech :)")
+
+class courseRequestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("index.html")
 
 if __name__ == "__main__":
     app = tornado.web.Application([
-        (r"/home", basicRequestHandler)
+        (r"/", basicRequestHandler),
+        (r"/courses", courseRequestHandler),
+
     ])
 
     port = 5500
