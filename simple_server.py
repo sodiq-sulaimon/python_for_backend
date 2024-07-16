@@ -31,6 +31,18 @@ class listRequestHandler(tornado.web.RequestHandler):
 
         self.write(json.dumps(fruits))
 
+    def post(self):
+        fruit = self.get_argument("fruit")
+        file = open("list.txt", "r")
+        fruits = file.read().splitlines()
+        if fruit not in fruits:
+            file = open("list.txt", "a")
+            file.write(f"{fruit}\n")
+            self.write({"Message": "fruit added successfuly"})
+        else:
+            self.write({"Message": "Fruit already in list"})
+        file.close()
+
 if __name__ == "__main__":
     app = tornado.web.Application([
         (r"/", basicRequestHandler),
