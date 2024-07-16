@@ -4,3 +4,5 @@ Banana
 Orange
 Strawberry
 Grapes
+Watermelon
+Lemon
