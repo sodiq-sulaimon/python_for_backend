@@ -18,12 +18,16 @@ class queryParamRequestHandler(tornado.web.RequestHandler):
         else:
             self.write("Invalid input")
 
+class resourceParamRequestHandler(tornado.web.RequestHandler):
+    def get(self, studentName, courseID):
+        self.write(f"Hi {studentName}, welcome to course {courseID}")
+
 if __name__ == "__main__":
     app = tornado.web.Application([
         (r"/", basicRequestHandler),
         (r"/courses", courseRequestHandler),
         (r"/isEven", queryParamRequestHandler),
-
+        (r"/students/([A-z]+)/([0-9]+)", resourceParamRequestHandler)
     ])
 
     port = 5500
